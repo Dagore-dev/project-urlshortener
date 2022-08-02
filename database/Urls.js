@@ -1,21 +1,22 @@
+const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose)
 const { Schema, model } = require('mongoose')
-const getSeqValue = require('../services/getSeqValue')
 
 const urlSchema = new Schema({
   original_url: {
     type: String,
     required: true
-  },
-  short_url: Number
+  }
 })
 
 urlSchema.set('toJSON', {
-  transform: async (document, obj) => {
+  transform: (document, obj) => {
     delete obj._id
     delete obj.__v
-    obj.short_url = await getSeqValue()
   }
 })
+
+urlSchema.plugin(AutoIncrement, { inc_field: 'short_url' })
 
 const Urls = model('Urls', urlSchema)
 
