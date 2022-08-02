@@ -35,9 +35,9 @@ app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' })
 })
 
-app.post('/api/shorturl', (request, response) => {
+app.post('/api/shorturl', async (request, response) => {
   const { url } = request.body
-  const { ok, obj } = postURL(url)
+  const { ok, obj } = await postURL(url)
 
   if (ok) {
     response.json(obj)
