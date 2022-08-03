@@ -10,7 +10,7 @@ function isValidUrl (url) {
     }
   }
 
-  return false
+  return { ok: false, URL: undefined }
 }
 
 module.exports = isValidUrl
