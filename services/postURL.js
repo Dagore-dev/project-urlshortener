@@ -1,8 +1,12 @@
 const Urls = require('../database/Urls')
+const isExistingUrl = require('../utils/isExistingUrl')
 const isValidUrl = require('../utils/isValidUrl')
 
 async function postURL (url) {
-  if (isValidUrl(url)) {
+  const { ok, URL } = isValidUrl(url)
+  const isExisting = ok ? await isExistingUrl(URL) : false
+
+  if (isExisting) {
     const newUrl = new Urls({
       original_url: url
     })
@@ -15,7 +19,6 @@ async function postURL (url) {
         obj: savedUrl
       }
     } catch (error) {
-      console.log(error)
       return {
         ok: false,
         obj: { message: 'Cannot save in database.' }
