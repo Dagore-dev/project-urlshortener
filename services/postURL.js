@@ -7,6 +7,8 @@ async function postURL (url) {
   const isExisting = ok ? await isExistingUrl(URL) : false
 
   if (isExisting) {
+    console.log('Ha pasado isExisting', url)
+    
     const newUrl = new Urls({
       original_url: url
     })

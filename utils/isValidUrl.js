@@ -1,6 +1,7 @@
 const { urlRegEx } = require('./regularExpressions')
 
 function isValidUrl (url) {
+  
   if (urlRegEx.test(url)) {
     try {
       const newUrl = new URL(url)

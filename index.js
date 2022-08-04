@@ -42,7 +42,7 @@ app.post('/api/shorturl', async (request, response) => {
   if (ok) {
     response.json(obj)
   } else {
-    response.status(401).json({ error: 'invalid url' })
+    response.status(401).json({ error: 'Invalid URL' })
   }
 })
 
